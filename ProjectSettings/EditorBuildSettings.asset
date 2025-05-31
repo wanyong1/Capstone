@@ -18,5 +18,6 @@ EditorBuildSettings:
     path: Assets/capston/Scenes/MutiPlayScene.unity
     guid: 67031561744fe9846906c3a65ef8936d
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: e9c1b0f8cd86f794499ff307cf722feb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
