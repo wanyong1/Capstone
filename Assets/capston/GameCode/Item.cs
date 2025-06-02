@@ -21,15 +21,15 @@ public class Item : MonoBehaviour
             {
                 if (type == Type.Coin)
                 {
-                    Debug.Log(" 코인을 획득했습니다. +" + value);
-                    // 필요하면 코인 저장 시스템 추가 가능
+                    Debug.Log("코인을 획득했습니다. +" + value);
+                    CoinManager.Instance.AddCoin(value); //  여기에 코인 증가 코드 추가
                 }
                 else
                 {
-                    player.ApplyItem(type, value); // 능력치 적용
+                    player.ApplyItem(type, value);
                 }
 
-                Destroy(gameObject); // 아이템 제거
+                Destroy(gameObject);
             }
         }
     }

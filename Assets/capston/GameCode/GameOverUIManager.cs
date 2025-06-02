@@ -81,7 +81,12 @@ public class GameOverUIManager : MonoBehaviour
         Debug.Log("[GameOverUI] ReturnToMenu 호출됨");
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene("UI"); // 메뉴 씬 이름에 맞게 수정 필요
+
+        //  코인 저장
+        if (CoinManager.Instance != null)
+            CoinManager.Instance.SaveCoinsToPrefs();
+
+        SceneManager.LoadScene("UI"); // 메뉴 씬으로
         gameOverPanel.SetActive(false);
     }
 }

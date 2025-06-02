@@ -29,8 +29,5 @@ public class Bullet : MonoBehaviour
 
             Destroy(gameObject); // ÃÑ¾Ë Á¦°Å
         }
-
-
-    Destroy(gameObject); // ÃÑ¾Ë Á¦°Å
     }
 }

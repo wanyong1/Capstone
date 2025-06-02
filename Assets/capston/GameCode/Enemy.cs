@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviourPun, IPunInstantiateMagicCallback
         if (isDying) return;
 
         currentHP -= damage;
+        Debug.Log($"[Enemy] {gameObject.name} 남은 체력: {currentHP}");
         if (currentHP <= 0)
         {
             isDying = true;

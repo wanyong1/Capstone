@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
 
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
                 if (bulletScript != null) bulletScript.damage = plusBulletDamage;
+                Debug.Log($"총알 {i + 1} 생성됨 - 각도 오프셋: {spreadAngle * offsetIndex}");
             }
 
             animator.SetBool("isShooting", true);
