@@ -11,7 +11,7 @@ public class CoinBonusUpgrade : MonoBehaviour
     public int baseUpgradeCost = 100;
     public int upgradeCost;
     public int currentLevel = 0;
-    public int maxLevel = 10;
+    public int maxLevel = 6;
 
     public Color filledColor = Color.yellow;
     public Color emptyColor = Color.gray;

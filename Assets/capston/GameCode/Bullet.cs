@@ -4,11 +4,12 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f; // 총알 속도
     public float lifeTime = 3f; // 총알이 사라지는 시간
-    public int damage;
+    public float damage = 5f;
 
     void Start()
     {
         Destroy(gameObject, lifeTime); // 일정 시간 후 총알 삭제
+
     }
 
     void Update()

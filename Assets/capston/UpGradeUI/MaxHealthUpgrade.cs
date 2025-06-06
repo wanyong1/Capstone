@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MoveSpeedUpgrade : MonoBehaviour
+public class MaxHealthUpgrade : MonoBehaviour
 {
     public Image iconImage;
     public Image[] levelBoxes;
@@ -13,7 +13,7 @@ public class MoveSpeedUpgrade : MonoBehaviour
     private int currentLevel = 0;
     private int maxLevel = 6;
 
-    public Color filledColor = new Color(0.3f, 0.7f, 1f); // ¹àÀº ÆÄ¶û
+    public Color filledColor = new Color(0.3f, 0.7f, 1f); // ÆÄ¶õ»ö
     public Color emptyColor = Color.gray;
 
     public ShopManager shopManager;
@@ -25,10 +25,10 @@ public class MoveSpeedUpgrade : MonoBehaviour
     {
         if (resetOnStart)
         {
-            PlayerPrefs.DeleteKey("MoveSpeedUpgradeLevel");
+            PlayerPrefs.DeleteKey("MaxHealthUpgradeLevel");
         }
 
-        currentLevel = PlayerPrefs.GetInt("MoveSpeedUpgradeLevel", 0);
+        currentLevel = PlayerPrefs.GetInt("MaxHealthUpgradeLevel", 0);
         upgradeCost = baseUpgradeCost + baseUpgradeCost * currentLevel;
         UpdateUI();
     }
@@ -40,7 +40,7 @@ public class MoveSpeedUpgrade : MonoBehaviour
         if (shopManager.TrySpendCoins(upgradeCost))
         {
             currentLevel++;
-            PlayerPrefs.SetInt("MoveSpeedUpgradeLevel", currentLevel);
+            PlayerPrefs.SetInt("MaxHealthUpgradeLevel", currentLevel);
 
             upgradeCost += baseUpgradeCost;
             UpdateUI();
@@ -54,7 +54,7 @@ public class MoveSpeedUpgrade : MonoBehaviour
             levelBoxes[i].color = i < currentLevel ? filledColor : emptyColor;
         }
 
-        costText.text = currentLevel >= maxLevel ? "MAX" : $"{upgradeCost}";
+        costText.text = currentLevel >= maxLevel ? "" : $"{upgradeCost}";
     }
 
     public int GetCurrentLevel()

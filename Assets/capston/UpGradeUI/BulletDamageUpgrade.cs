@@ -11,7 +11,7 @@ public class BulletDamageUpgrade : MonoBehaviour
     public int baseUpgradeCost = 500;
     private int upgradeCost;
     private int currentLevel = 0;
-    private int maxLevel = 10;
+    private int maxLevel = 6;
 
     public Color filledColor = Color.red;
     public Color emptyColor = Color.gray;

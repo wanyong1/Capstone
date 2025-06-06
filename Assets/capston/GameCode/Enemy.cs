@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviourPun, IPunInstantiateMagicCallback
 {
     public float moveSpeed = 3f;
     public int maxHP = 10;
-    private int currentHP;
+    private float currentHP;
 
     public GameObject expOrbPrefab;
     public GameObject coinPrefab;
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviourPun, IPunInstantiateMagicCallback
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (isDying) return;
 
