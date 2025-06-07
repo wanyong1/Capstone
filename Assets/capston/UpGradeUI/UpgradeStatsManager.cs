@@ -32,6 +32,13 @@ public class UpgradeStatsManager : MonoBehaviour
         CoinBonusLevel = PlayerPrefs.GetInt("CoinBonusUpgradeLevel", 0);
         MaxHealthLevel = PlayerPrefs.GetInt("MaxHealthUpgradeLevel", 0);
 
+        //테스트용
+        //BulletDamageLevel = 0;
+        //MoveSpeedLevel = 0;
+        //ExpBonusLevel = 0;
+        //CoinBonusLevel = 0;
+        //MaxHealthLevel = 0;
+
         Debug.Log($"[UpgradeStatsManager] 업그레이드 레벨 로드 완료 - BulletDamage: {BulletDamageLevel}, MoveSpeed: {MoveSpeedLevel}, Exp: {ExpBonusLevel}, Coin: {CoinBonusLevel}, Health: {MaxHealthLevel}");
     }
 
