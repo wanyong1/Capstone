@@ -23,13 +23,26 @@ public class Player : MonoBehaviour
     public int plusBulletDamage = 5;
     public int plusBulletCount = 1;
 
-    // 플레이어 체력
+    // 업그레이드
+    private int baseBulletDamage = 5;
+    private int inGameBulletUpgrade = 0;
+
 
 
     private PhotonView photonView;
 
     private void Start()
     {
+        int storeBonus = 0;
+
+        // 싱글 모드일 경우에만 상점 업그레이드 적용
+        if (!GameModeManager.IsMultiplayer && UpgradeStatsManager.Instance != null)
+        {
+            storeBonus = (int)UpgradeStatsManager.Instance.GetBulletDamageBonus();
+        }
+
+        plusBulletDamage = baseBulletDamage + storeBonus + inGameBulletUpgrade;
+
         photonView = GetComponent<PhotonView>();// 초기화
 
         if (GameModeManager.IsMultiplayer && !photonView.IsMine)
@@ -170,7 +183,13 @@ public class Player : MonoBehaviour
         switch (type)
         {
             case Item.Type.BulletDamageUp:
-                plusBulletDamage += value;
+                inGameBulletUpgrade += value;
+                int storeBonus = 0;
+                if (UpgradeStatsManager.Instance != null)
+                {
+                    storeBonus = (int)UpgradeStatsManager.Instance.GetBulletDamageBonus();
+                }
+                plusBulletDamage = baseBulletDamage + storeBonus + inGameBulletUpgrade;
                 break;
             case Item.Type.FireRateUp:
                 fireRate = Mathf.Max(0.1f, fireRate - 0.1f * value);

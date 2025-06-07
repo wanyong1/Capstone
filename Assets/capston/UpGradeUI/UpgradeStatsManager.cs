@@ -36,9 +36,9 @@ public class UpgradeStatsManager : MonoBehaviour
     }
 
     // 실제 수치를 반환하는 메서드 예시
-    public float GetBulletDamageMultiplier()
+    public float GetBulletDamageBonus()
     {
-        return 1f + BulletDamageLevel * 0.2f; // 레벨당 +20% 증가, 
+        return BulletDamageLevel * 1f; 
     }
 
     public float GetMoveSpeedBonus()
