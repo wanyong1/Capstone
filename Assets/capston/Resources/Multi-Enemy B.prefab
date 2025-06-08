@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   maxHP: 10
+  dropChance: 0.5
   expOrbPrefab: {fileID: 4320961424797432068, guid: 838ac1190b1e96a4fab82f4feadce26d, type: 3}
   coinPrefab: {fileID: 2245564596161178383, guid: e408ee5068161f549b32614351f4e07d, type: 3}
   isFromOtherPlayer: 0
