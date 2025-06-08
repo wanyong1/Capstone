@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviourPun, IPunInstantiateMagicCallback
     public float moveSpeed = 3f;
     public int maxHP = 10;
     private float currentHP;
+    public float dropChance = 0.5f; // 드랍 확률 (예: 50%)
 
     public GameObject expOrbPrefab;
     public GameObject coinPrefab;
@@ -123,7 +124,11 @@ public class Enemy : MonoBehaviourPun, IPunInstantiateMagicCallback
             // 코인 드랍 (싱글 전용)
             if (!GameModeManager.IsMultiplayer && coinPrefab != null && !isFromOtherPlayer)
             {
-                Instantiate(coinPrefab, transform.position + Vector3.right * 0.5f, Quaternion.identity);
+                
+                if (Random.value <= dropChance)
+                {
+                    Instantiate(coinPrefab, transform.position + Vector3.right * 0.5f, Quaternion.identity);
+                }
             }
 
             // 제거 처리

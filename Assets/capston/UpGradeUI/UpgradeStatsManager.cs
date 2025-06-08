@@ -24,7 +24,7 @@ public class UpgradeStatsManager : MonoBehaviour
         LoadUpgradeLevels();
     }
 
-    private void LoadUpgradeLevels()
+    public  void LoadUpgradeLevels()
     {
         BulletDamageLevel = PlayerPrefs.GetInt("BulletDamageUpgradeLevel", 0);
         MoveSpeedLevel = PlayerPrefs.GetInt("MoveSpeedUpgradeLevel", 0);
@@ -32,7 +32,7 @@ public class UpgradeStatsManager : MonoBehaviour
         CoinBonusLevel = PlayerPrefs.GetInt("CoinBonusUpgradeLevel", 0);
         MaxHealthLevel = PlayerPrefs.GetInt("MaxHealthUpgradeLevel", 0);
 
-        //테스트용
+
         //BulletDamageLevel = 0;
         //MoveSpeedLevel = 0;
         //ExpBonusLevel = 0;
@@ -53,9 +53,9 @@ public class UpgradeStatsManager : MonoBehaviour
         return MoveSpeedLevel * 0.3f; // 레벨당 0.3 유닛 증가
     }
 
-    public int GetBonusCoinAmount()
+    public float GetBonusCoinAmount()
     {
-        return CoinBonusLevel; // 레벨당 +1코인
+        return 1f + (CoinBonusLevel * 0.1f); // 레벨당 10% 증가
     }
 
     public int GetBonusExpAmount()

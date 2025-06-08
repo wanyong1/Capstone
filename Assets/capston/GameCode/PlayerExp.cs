@@ -35,6 +35,11 @@ public class PlayerExp : MonoBehaviour
 
     public void AddExp(int amount)
     {
+        if (!GameModeManager.IsMultiplayer)
+        {
+            float multiplier = 1f + (UpgradeStatsManager.Instance?.GetBonusExpAmount() ?? 0) * 0.1f;
+            amount = Mathf.RoundToInt(amount * multiplier);
+        }
         currentExp += amount;
 
         if (currentExp >= expToNextLevel)

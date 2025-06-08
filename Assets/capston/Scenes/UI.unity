@@ -11619,13 +11619,14 @@ MonoBehaviour:
   - {fileID: 1871813635}
   - {fileID: 1187850424}
   costText: {fileID: 1145206358}
-  baseUpgradeCost: 100
-  upgradeCost: 100
+  baseUpgradeCost: 1
+  upgradeCost: 1
   currentLevel: 1
   maxLevel: 6
   filledColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   emptyColor: {r: 1, g: 1, b: 1, a: 1}
   shopManager: {fileID: 303287717}
+  resetOnStart: 1
 --- !u!114 &1861839741
 MonoBehaviour:
   m_ObjectHideFlags: 0

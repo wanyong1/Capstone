@@ -17,6 +17,16 @@ public class PlayerHealth : MonoBehaviourPun
 
     void Start()
     {
+        if (!GameModeManager.IsMultiplayer)
+        {
+            UpgradeStatsManager.Instance.LoadUpgradeLevels();  // 최신 업그레이드 정보 로드
+        }
+
+        if (!GameModeManager.IsMultiplayer && UpgradeStatsManager.Instance != null)
+        {
+            maxHealth += UpgradeStatsManager.Instance.GetExtraHealth();  // 예: 레벨 * 5
+        }
+
         currentHealth = maxHealth;
 
         if (!GameModeManager.IsMultiplayer)

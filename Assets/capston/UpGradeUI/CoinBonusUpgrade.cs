@@ -18,15 +18,21 @@ public class CoinBonusUpgrade : MonoBehaviour
 
     public ShopManager shopManager;
 
+    [Header("초기화 설정")]
+    [SerializeField] private bool resetOnStart = true;
+
     void Start()
     {
-        PlayerPrefs.DeleteKey("CoinBonusUpgradeLevel"); // ← 임시 초기화
+        if (resetOnStart)
+        {
+            PlayerPrefs.DeleteKey("CoinBonusUpgradeLevel");
+        }
+
         currentLevel = PlayerPrefs.GetInt("CoinBonusUpgradeLevel", 0);
         upgradeCost = baseUpgradeCost + baseUpgradeCost * currentLevel;
         costText.text = currentLevel >= maxLevel ? "MAX" : upgradeCost.ToString();
         UpdateUI();
     }
-
 
     public void OnClickUpgrade()
     {

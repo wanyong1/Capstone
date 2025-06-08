@@ -37,6 +37,11 @@ public class CoinManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateCoinVisibility();
+
+        if (scene.name == "GameScene")
+        {
+            ResetCoinCount();  // 게임을 다시 시작할 때 코인 초기화
+        }
     }
 
     void UpdateCoinVisibility()

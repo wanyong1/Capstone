@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
+    public float speed = 6f;
+    private float speedMultiplier = 1f;
     float hAxis;
     float vAxis;
     Vector3 moveVec;
@@ -20,12 +21,12 @@ public class Player : MonoBehaviour
 
     private bool isMouseShooting = false;
     //총알 업그레이드 관련
-    public int plusBulletDamage = 5;
-    public int plusBulletCount = 1;
+    public float plusBulletDamage = 5f;
+    public float plusBulletCount = 1f;
 
     // 업그레이드
-    private int baseBulletDamage = 5;
-    private int inGameBulletUpgrade = 0;
+    private float baseBulletDamage = 5;
+    private float inGameBulletUpgrade = 0;
 
 
 
@@ -33,9 +34,21 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        if (!GameModeManager.IsMultiplayer)
+        {
+            UpgradeStatsManager.Instance.LoadUpgradeLevels();  // 최신 업그레이드 정보 로드
+        }
+
+        //속도
+        if (!GameModeManager.IsMultiplayer)
+        {
+            speedMultiplier += UpgradeStatsManager.Instance?.GetMoveSpeedBonus() ?? 0f;
+        }
+
+
         int storeBonus = 0;
 
-        // 싱글 모드일 경우에만 상점 업그레이드 적용
+        // 싱글 모드일 경우에만 상점 업그레이드 적용 총알 데미지
         if (!GameModeManager.IsMultiplayer && UpgradeStatsManager.Instance != null)
         {
             storeBonus = (int)UpgradeStatsManager.Instance.GetBulletDamageBonus();
@@ -88,7 +101,7 @@ public class Player : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
 
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
-        transform.position += moveVec * speed * Time.deltaTime;
+        transform.position += moveVec * speed * speedMultiplier * Time.deltaTime;
 
         animator.SetBool("isRunLeft", hAxis < 0);
         animator.SetBool("isRunRight", hAxis > 0);
@@ -131,11 +144,11 @@ public class Player : MonoBehaviour
             }
 
             float spreadAngle = 10f;
-            int mid = plusBulletCount / 2;
+            float mid = plusBulletCount / 2;
 
             for (int i = 0; i < plusBulletCount; i++)
             {
-                int offsetIndex = i - mid;
+                float offsetIndex = i - mid;
                 if (plusBulletCount % 2 == 0) offsetIndex += 1;
 
                 Quaternion rotation = baseRotation * Quaternion.Euler(0, spreadAngle * offsetIndex, 0);
@@ -178,7 +191,7 @@ public class Player : MonoBehaviour
         if (direction != Vector3.zero) transform.rotation = Quaternion.LookRotation(direction);
     }
 
-    public void ApplyItem(Item.Type type, int value)
+    public void ApplyItem(Item.Type type, float value)
     {
         switch (type)
         {
