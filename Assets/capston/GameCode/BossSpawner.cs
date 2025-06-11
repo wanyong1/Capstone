@@ -11,7 +11,7 @@ public class BossSpawner : MonoBehaviour
         if (GameModeManager.IsMultiplayer) return;
 
         // 보스가 살아있으면 타이머 멈춤
-        if (FindAnyObjectByType<BossHealth>() != null) return;
+        if (FindAnyObjectByType<Boss>() != null) return;
 
         timer += Time.deltaTime;
 
