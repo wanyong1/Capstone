@@ -19,16 +19,33 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // 충돌한 오브젝트 로그 찍기
         Debug.Log($"[Bullet] 충돌한 오브젝트: {other.name}");
 
-        // 자식 오브젝트까지 포함해서 Enemy 탐색
+        // 1. 보스 처리 (tag로 판단)
+        if (other.CompareTag("boss"))
+        {
+            BossHealth boss = other.GetComponentInParent<BossHealth>();
+            if (boss != null)
+            {
+                boss.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("[Bullet] Boss 태그는 있지만 BossHealth가 없습니다.");
+            }
+
+            Destroy(gameObject);
+            return;
+        }
+
+        // 2. 일반 몬스터 처리
         Enemy enemy = other.GetComponentInParent<Enemy>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
-
-            Destroy(gameObject); // 총알 제거
+            Destroy(gameObject);
+            return;
         }
     }
+
 }

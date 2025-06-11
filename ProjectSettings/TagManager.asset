@@ -12,6 +12,7 @@ TagManager:
   - orbit
   - HostField
   - ClientField
+  - boss
   layers:
   - Default
   - TransparentFX
