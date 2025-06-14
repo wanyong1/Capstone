@@ -77,6 +77,8 @@ public class LevelUpUI : MonoBehaviour
                 break;
         }
 
+        InGameUpgradeUIManager.Instance?.AddUpgrade(type);
+
         if (!GameModeManager.IsMultiplayer)
         {
             Time.timeScale = 1f;
