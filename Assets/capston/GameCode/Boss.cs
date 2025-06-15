@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
     private float currentHealth;
     private bool isDying = false;
 
-    public GameObject expOrbPrefab;
+    [SerializeField] public GameObject expOrbPrefab;
     public GameObject coinPrefab;
     public int expAmount = 10;
     public int coinAmount = 5;
@@ -81,26 +81,45 @@ public class Boss : MonoBehaviour
 
         BossUIManager.Instance?.Hide();
 
-        if (!GameModeManager.IsMultiplayer && expOrbPrefab != null)
+        if (GameModeManager.IsMultiplayer)
         {
+            //  멀티: 경험치만 Photon으로 드랍
             for (int i = 0; i < expAmount; i++)
             {
                 Vector3 offset = Random.insideUnitSphere * 2f;
                 offset.y = 0.5f;
-                Instantiate(expOrbPrefab, transform.position + offset, Quaternion.identity);
+                Photon.Pun.PhotonNetwork.Instantiate("ExpOrb", transform.position + offset, Quaternion.identity);
             }
         }
-
-        if (!GameModeManager.IsMultiplayer && coinPrefab != null)
+        else
         {
-            for (int i = 0; i < coinAmount; i++)
+            // 싱글: 경험치 + 코인 드랍
+            if (expOrbPrefab != null)
             {
-                Vector3 offset = Random.insideUnitSphere * 2f;
-                offset.y = 0.5f;
-                Instantiate(coinPrefab, transform.position + offset, Quaternion.identity);
+                for (int i = 0; i < expAmount; i++)
+                {
+                    Vector3 offset = Random.insideUnitSphere * 2f;
+                    offset.y = 0.5f;
+                    Instantiate(expOrbPrefab, transform.position + offset, Quaternion.identity);
+                }
+            }
+
+            if (coinPrefab != null)
+            {
+                for (int i = 0; i < coinAmount; i++)
+                {
+                    Vector3 offset = Random.insideUnitSphere * 2f;
+                    offset.y = 0.5f;
+                    Instantiate(coinPrefab, transform.position + offset, Quaternion.identity);
+                }
             }
         }
 
         Destroy(gameObject);
+
+        BossSpawner spawner = FindAnyObjectByType<BossSpawner>();
+        if (spawner != null)
+            spawner.NotifyBossDeath();
     }
+
 }

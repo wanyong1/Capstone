@@ -2986,7 +2986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossPrefabSingle: {fileID: 4449876910341313913, guid: c281d577f82dbe849b116b37923b36d8, type: 3}
-  delay: 5
+  spawnDelay: 5
 --- !u!4 &1278262038
 Transform:
   m_ObjectHideFlags: 0

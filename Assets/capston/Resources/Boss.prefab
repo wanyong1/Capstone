@@ -358,9 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fcfddecdb28e489576d73196dc15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  expOrbPrefab: {fileID: 4320961424797432068, guid: 15d32620ec58a144fa7f554eede89220, type: 3}
-  coinPrefab: {fileID: 2245564596161178383, guid: a0165638b74840e4daaae3e0594bbb10, type: 3}
+  maxHealth: 10
+  expOrbPrefab: {fileID: 4320961424797432068, guid: 838ac1190b1e96a4fab82f4feadce26d, type: 3}
+  coinPrefab: {fileID: 2245564596161178383, guid: e408ee5068161f549b32614351f4e07d, type: 3}
   expAmount: 10
   coinAmount: 5
 --- !u!114 &2998892077083268369

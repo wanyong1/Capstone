@@ -27,6 +27,13 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
             spawnPos = clientSpawnPoint.position;
         }
 
-        PhotonNetwork.Instantiate(prefabName, spawnPos, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(prefabName, spawnPos, Quaternion.identity);
+
+        //  내 플레이어라면 BossSpawner 생성 (멀티 전용)
+        if (GameModeManager.IsMultiplayer && player.GetComponent<PhotonView>().IsMine)
+        {
+            Instantiate(Resources.Load("BossSpawner"));
+            Debug.Log("[PlayerSpawner] 내 BossSpawner 생성 완료");
+        }
     }
 }
