@@ -1655,6 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a09f36b6fec074d9d58ba66b54c177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradePanel: {fileID: 563878033}
   upgradeText: {fileID: 1591007912}
 --- !u!114 &563878036
 MonoBehaviour:

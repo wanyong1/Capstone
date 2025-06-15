@@ -56,7 +56,7 @@ public class GameOverUIManager : MonoBehaviour
             }
             else
             {
-                resultText.text = ""; // ½Ì±Û¿¡¼­´Â °á°ú ÅØ½ºÆ® ¼û±è
+                resultText.text = "GameOver"; // ½Ì±Û¿¡¼­´Â °á°ú ÅØ½ºÆ® ¼û±è
             }
         }
         else
@@ -64,8 +64,24 @@ public class GameOverUIManager : MonoBehaviour
             Debug.LogWarning("[GameOverUI] resultText °¡ nullÀÔ´Ï´Ù!");
         }
 
+        //  °ÔÀÓ ¿À¹ö ½Ã º¸½º UIµµ ¼û±è Ã³¸®
+        if (BossUIManager.Instance != null)
+        {
+            Debug.Log("[GameOverUI] BossUIManager ¼û±è Ã³¸®");
+            BossUIManager.Instance.Hide();
+        }
+        //InGameUpgradeUI ºñÈ°¼ºÈ­
+        if (InGameUpgradeUIManager.Instance != null)
+        {
+            Debug.Log("[GameOverUI] InGameUpgradeUI ¼û±è Ã³¸®");
+            InGameUpgradeUIManager.Instance.HidePanel();
+        }
+
+
         Time.timeScale = 0f;
+
     }
+
 
     public void RestartGame()
     {
@@ -89,4 +105,5 @@ public class GameOverUIManager : MonoBehaviour
         SceneManager.LoadScene("UI"); // ¸Þ´º ¾ÀÀ¸·Î
         gameOverPanel.SetActive(false);
     }
+
 }

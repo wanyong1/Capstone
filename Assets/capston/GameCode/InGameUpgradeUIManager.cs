@@ -5,6 +5,8 @@ using TMPro;
 public class InGameUpgradeUIManager : MonoBehaviour
 {
     public static InGameUpgradeUIManager Instance;
+    public GameObject upgradePanel;
+
 
     public TMP_Text upgradeText;
     private Dictionary<string, int> upgradeLevels = new();
@@ -33,4 +35,10 @@ public class InGameUpgradeUIManager : MonoBehaviour
             upgradeText.text += $"{kvp.Key} LV: {kvp.Value}\n";
         }
     }
+    public void HidePanel()
+    {
+        if (upgradePanel != null)
+            upgradePanel.SetActive(false);
+    }
+
 }
