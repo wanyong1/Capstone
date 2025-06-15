@@ -38,8 +38,6 @@ public class GameOverUIManager : MonoBehaviour
     {
         Debug.Log($"[GameOverUI] ShowGameOver 호출됨 - 결과: {(isWin ? "WIN" : "LOSE")}, 모드: {(isMultiplayer ? "멀티" : "싱글")}");
 
-        BossUIManager.Instance?.Hide();
-
         if (gameOverPanel != null)
         {
             Debug.Log("[GameOverUI] gameOverPanel 활성화 시도");
@@ -58,7 +56,7 @@ public class GameOverUIManager : MonoBehaviour
             }
             else
             {
-                resultText.text = "Game Over"; // 싱글에서는 결과 텍스트 숨김
+                resultText.text = ""; // 싱글에서는 결과 텍스트 숨김
             }
         }
         else

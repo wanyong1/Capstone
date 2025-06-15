@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         // 1. 보스 처리 (tag로 판단)
         if (other.CompareTag("boss"))
         {
-            Boss boss = other.GetComponentInParent<Boss>();
+            BossHealth boss = other.GetComponentInParent<BossHealth>();
             if (boss != null)
             {
                 boss.TakeDamage(damage);
